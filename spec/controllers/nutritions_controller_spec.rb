@@ -31,7 +31,7 @@ describe NutritionsController, type: :controller do
       @nutri1 = double('nutri1')
     end
     it 'redirects to the nutrition page' do
-      post :create, exercise: FactoryBot.attributes_for(:nutrition)
+      post :create, nutrition: FactoryBot.attributes_for(:nutrition)
       expect(response).to redirect_to('/nutritions')
     end
   end
@@ -48,13 +48,13 @@ describe NutritionsController, type: :controller do
     end
   end
   describe 'put update' do
-    let!(:chin) {Nutrition.create}
+    let!(:info) {Nutrition.create}
     before(:each) do
-      put :update, id: chin.id, exercise: FactoryBot.attributes_for(:nutrition, description: 'Updated')
+      put :update, id: info.id, nutrition: FactoryBot.attributes_for(:nutrition, height: 'newVal')
     end
     it 'updates the nutritions' do
-      chin.reload
-      expect(chin.description).to eql('Updated')
+      info.reload
+      expect(info.height).to eql('newVal')
     end
   end
   describe 'destroy' do
